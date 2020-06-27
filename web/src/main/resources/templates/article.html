@@ -6,24 +6,40 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div th:each="article : ${articles}">
-        <a th:href="@{/basket/{bId}/article/{aId}/check(bId = ${basket.id},aId = ${article.id})}" th:inline="text">
-            [[${article.name}]] - [[${article.comment}]] - [[${article.check}]]
-        </a>
-        <a th:href="@{/basket/{bId}/article/{aId}/delete(bId = ${basket.id},aId = ${article.id})}">
-            Delete
-        </a>
+    <div class="container">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Article</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${articles}">
+                <td th:classappend="${article.check} ? alert-info : alert-danger" role="alert">
+                    <a th:href="@{/basket/{bId}/article/{aId}/check(bId = ${basket.id},aId = ${article.id})}" th:inline="text">
+                        [[${article.name}]] - [[${article.comment}]]
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/basket/{bId}/article/{aId}/delete(bId = ${basket.id},aId = ${article.id})}">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <form method="post" th:action="@{/basket/{id}/article(id = ${basket.id})}">
-        <div>
-            <label>Name</label>
-            <input type="text" name="name"/>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" aria-describedby="Name" id="name" name="name">
         </div>
-        <div>
-            <label>Comment</label>
-            <input type="text" name="comment"/>
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <input type="text" class="form-control" id="comment" name="comment">
         </div>
-        <input type="submit" value="Add article"/>
+        <button type="submit" class="btn btn-primary">Add article</button>
     </form>
 </div>
 </body>

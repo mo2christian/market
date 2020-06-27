@@ -24,6 +24,9 @@ public class Basket {
     @Field(name = "created_date")
     private Timestamp createdDate;
 
+    @Field(name = "rank")
+    private int rank = 1;
+
     @Descendants
     Set<Article> articles;
 

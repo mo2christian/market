@@ -6,13 +6,32 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div th:each="basket : ${baskets}">
-        <a th:href="@{/basket/{id}(id = ${basket.id})}" th:inline="text">[[${basket.name}]]</a>
-        <a th:href="@{/basket/{id}/delete(id = ${basket.id})}" th:inline="text">Delete</a>
+    <div class="container">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>Basket</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="basket : ${baskets}">
+                    <td>
+                        <a th:href="@{/basket/{id}(id = ${basket.id})}" th:inline="text">[[${basket.name}]]</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/basket/{id}/delete(id = ${basket.id})}" th:inline="text">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br/><br/>
+        <div class="row justify-content-between">
+            <form method="post" th:action="@{/basket}">
+                <input type="submit" value="Create basket"/>
+            </form>
+        </div>
     </div>
-    <form method="post" th:action="@{/basket}">
-        <input type="submit" value="Create basket"/>
-    </form>
 </div>
 </body>
 </html>

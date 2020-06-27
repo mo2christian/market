@@ -38,10 +38,9 @@ public class BasketService {
         return Lists.newArrayList(iterable);
     }
 
-    public Basket getLastBasket(){
+    public Optional<Basket> getLastBasket(){
         return findAll().stream()
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     public void delete(Basket basket){
@@ -65,6 +64,10 @@ public class BasketService {
     public void createBasket(){
         Basket basket = new Basket();
         basket.setCreatedDate(Timestamp.now());
+        Optional<Basket> lastBasket = getLastBasket();
+        lastBasket.ifPresent(b -> {
+            basket.setRank(b.getRank() + 1);
+        });
         basketRepository.save(basket);
     }
 

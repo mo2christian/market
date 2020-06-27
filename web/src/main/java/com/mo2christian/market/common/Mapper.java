@@ -18,7 +18,7 @@ public class Mapper {
         public BasketDto toDto(com.mo2christian.market.model.Basket entity){
             BasketDto dto = new BasketDto();
             dto.setId(entity.getKey().getId());
-            dto.setName(dateFormat.format(entity.getCreatedDate().toDate()) + " " +dto.getId());
+            dto.setName(dateFormat.format(entity.getCreatedDate().toDate()) + " " +entity.getRank());
             return dto;
         }
 

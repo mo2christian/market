@@ -52,7 +52,8 @@ public class MarketController {
             produces = {MediaType.TEXT_PLAIN_VALUE})
     @ResponseBody
     public String addArticle(@RequestBody ArticleDto dto){
-        Basket basket = service.getLastBasket();
+        Basket basket = service.getLastBasket()
+                .get();
         Article article = Mapper.ARTICLE.toEntity(dto);
         service.addArticle(basket, article);
         return "OK";
