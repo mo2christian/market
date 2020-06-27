@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:each="basket : ${baskets}">
+        <a th:href="@{/basket/{id}(id = ${basket.id})}" th:inline="text">[[${basket.name}]]</a>
+        <a th:href="@{/basket/{id}/delete(id = ${basket.id})}" th:inline="text">Delete</a>
+    </div>
+    <form method="post" th:action="@{/basket}">
+        <input type="submit" value="Create basket"/>
+    </form>
+</div>
+</body>
+</html>

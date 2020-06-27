@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Article</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:each="article : ${articles}">
+        <a th:href="@{/basket/{bId}/article/{aId}/check(bId = ${basket.id},aId = ${article.id})}" th:inline="text">
+            [[${article.name}]] - [[${article.comment}]] - [[${article.check}]]
+        </a>
+        <a th:href="@{/basket/{bId}/article/{aId}/delete(bId = ${basket.id},aId = ${article.id})}">
+            Delete
+        </a>
+    </div>
+    <form method="post" th:action="@{/basket/{id}/article(id = ${basket.id})}">
+        <div>
+            <label>Name</label>
+            <input type="text" name="name"/>
+        </div>
+        <div>
+            <label>Comment</label>
+            <input type="text" name="comment"/>
+        </div>
+        <input type="submit" value="Add article"/>
+    </form>
+</div>
+</body>
+</html>

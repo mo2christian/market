@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mo2christian.market</groupId>
+    <artifactId>function</artifactId>
+    <version>0.0.3</version>
+    <properties>
+        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <gcp.datastore.version>1.103.0</gcp.datastore.version>
+        <google.actions.version>1.0.2</google.actions.version>
+    </properties>
+
+    <dependencies>
+        <!-- Required for Function primitives -->
+        <dependency>
+            <groupId>com.google.cloud.functions</groupId>
+            <artifactId>functions-framework-api</artifactId>
+            <version>1.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-datastore</artifactId>
+            <version>${gcp.datastore.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.actions</groupId>
+            <artifactId>actions-on-google</artifactId>
+            <version>${google.actions.version}</version>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <!--
+                  Google Cloud Functions Framework Maven plugin
+
+                  This plugin allows you to run Cloud Functions Java code
+                  locally. Use the following terminal command to run a
+                  given function locally:
+
+                  mvn function:run -Drun.functionTarget=your.package.yourFunction
+                -->
+                <groupId>com.google.cloud.functions</groupId>
+                <artifactId>function-maven-plugin</artifactId>
+                <version>0.9.3</version>
+                <configuration>
+                    <functionTarget>com.mo2christian.market.function.Launcher</functionTarget>
+                    <name>market-function</name>
+                    <region>europe-west1</region>
+                    <deploy.runtime>java11</deploy.runtime>
+                    <deploy.memory>1024MB</deploy.memory>
+                    <deploy.serviceaccount>market-function@market-monlabo-biz.iam.gserviceaccount.com</deploy.serviceaccount>
+                    <deploy.triggerhttp>true</deploy.triggerhttp>
+                    <allowUnauthenticated>true</allowUnauthenticated>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

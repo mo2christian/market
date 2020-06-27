@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Market list</title>
+</head>
+<body>
+    <form method="post" th:action="@{/list/save}">
+        <div th:each="article, info : ${articles}">
+            <label th:inline="text">Article  [[${info.index + 1}]]</label>
+            <input type="text" name="articles" th:value="${article}"/>
+        </div>
+    </form>
+</body>
+</html>
