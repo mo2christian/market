@@ -10,17 +10,17 @@
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th>Basket</th>
-                    <th>Operations</th>
+                    <th class="col-8">Basket</th>
+                    <th class="col-4"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="basket : ${baskets}">
-                    <td>
+                    <td class="col-8">
                         <a th:href="@{/basket/{id}(id = ${basket.id})}" th:inline="text">[[${basket.name}]]</a>
                     </td>
-                    <td>
-                        <a th:href="@{/basket/{id}/delete(id = ${basket.id})}" th:inline="text">Delete</a>
+                    <td class="col-4">
+                        <a th:href="@{/basket/{id}/delete(id = ${basket.id})}" th:inline="text">Del</a>
                     </td>
                 </tr>
             </tbody>

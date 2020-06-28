@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mo2christian</groupId>
 	<artifactId>market</artifactId>
-	<version>0.0.4</version>
+	<version>0.1.0</version>
 	<name>market</name>
 	<description>Market app</description>
 

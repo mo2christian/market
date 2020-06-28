@@ -10,20 +10,20 @@
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th>Article</th>
-                    <th>Operations</th>
+                    <th class="col-8">Article</th>
+                    <th class="col-4"></th>
                 </tr>
             </thead>
             <tbody>
             <tr th:each="article : ${articles}">
-                <td th:classappend="${article.check} ? alert-info : alert-danger" role="alert">
+                <td class="col-8" th:classappend="${article.check} ? alert-info : alert-danger" role="alert">
                     <a th:href="@{/basket/{bId}/article/{aId}/check(bId = ${basket.id},aId = ${article.id})}" th:inline="text">
-                        [[${article.name}]] - [[${article.comment}]]
+                        [[${article.name}]] [[${article.comment}]]
                     </a>
                 </td>
-                <td>
+                <td class="col-4">
                     <a th:href="@{/basket/{bId}/article/{aId}/delete(bId = ${basket.id},aId = ${article.id})}">
-                        Delete
+                        Del
                     </a>
                 </td>
             </tr>
@@ -33,7 +33,7 @@
     <form method="post" th:action="@{/basket/{id}/article(id = ${basket.id})}">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" aria-describedby="Name" id="name" name="name">
+            <input type="text" class="form-control" aria-describedby="Name" id="name" name="name" required>
         </div>
         <div class="form-group">
             <label for="comment">Comment</label>
